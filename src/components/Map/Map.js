@@ -12,6 +12,9 @@ class Map extends React.Component {
           containerElement={<div style={{ height: `400px` }} />}
           mapElement={<div style={{ height: `92vh` }} />}
           query={this.props.query}
+          markers={this.props.markers}
+          lat={this.props.lat}
+          lng={this.props.lng}
         />
       </div>
     )

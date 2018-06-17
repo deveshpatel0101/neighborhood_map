@@ -1,6 +1,5 @@
 import React from 'react';
 import './Header.css';
-import markers from '../../controllers/markers';
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +18,6 @@ class Header extends React.Component {
 
   handleChange(e) {
     this.props.newQuery(e.target.value);
-    console.log(e.target.value);
   }
 
   render() {
@@ -47,7 +45,7 @@ class Header extends React.Component {
           </form>
           <div className='content'>
             {
-              markers.map((marker, value) => (<div className='content-text' key={value}>{marker.name}</div>))
+              this.props.markers.map((marker, value) => (<div className='content-text' key={value}>{marker.name}</div>))
             }
           </div>
         </div>
