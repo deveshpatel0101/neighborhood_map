@@ -1,0 +1,91 @@
+.header {
+  background-color: #111111;
+}
+
+.header nav {
+  padding: 5px 20px 5px 20px;
+}
+
+.header svg {
+  padding: 2px 10px 2px 10px;
+}
+
+.header svg:hover {
+  background-color: #2c2c2c;
+  transition: 0.3s;
+}
+
+.side-nav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  opacity: 0.95;
+  overflow-x: hidden;
+  transition: 0.3s; 
+}
+
+.side-nav .close {
+  float: right;
+  margin-right: auto;
+  color: white;
+  font-size: 30px;
+  padding: 10px;
+  position: relative;
+}
+
+.side-nav .close:hover {
+  cursor: pointer;
+  color: grey;
+  transition: 0.1s;
+}
+
+.side-nav form {
+  display: block;
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
+.side-nav form input {
+  border-radius: 2px;
+  border: none;
+  height: 17px;
+  margin-right: 10px; 
+  padding: 3px;
+  font-style: italic;
+  background-color: #dfdfdf;
+}
+
+.side-nav form button {
+  width: 50px;
+  height: 25px;
+  border: none;
+  border-radius: 2px;
+}
+
+.side-nav form button:hover {
+  background-color: grey;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.content {
+  margin-top: 20px;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.content-text {
+  color: #c2c2c2;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.content-text:hover {
+  transition: 0.2s;
+  cursor: pointer;
+  background-color: black;
+}
