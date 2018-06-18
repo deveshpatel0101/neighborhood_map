@@ -40,6 +40,9 @@ class Header extends React.Component {
               </a>
             </span>
           </nav>
+          <div className='api-used'>
+            <a href='https://foursquare.com' target='_blank'>Foursquare API used.</a>
+          </div>
 
         </div>
 
@@ -59,9 +62,6 @@ class Header extends React.Component {
                   (<a href='#' className='content-text' key={marker.id} onClick={this.handleListClick}>{marker.name}</a>)
                 )
             }
-            <div className='api-used'>
-              <a href='https://foursquare.com' target='_blank'>Foursquare API used.</a>
-            </div>
           </div>
         </div>
       </div>
