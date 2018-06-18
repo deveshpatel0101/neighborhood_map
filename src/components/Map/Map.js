@@ -5,7 +5,7 @@ import MapWithMarker from '../Marker/Marker';
 class Map extends React.Component {
   render() {
     return (
-      <div className='map' id='map'>
+      <div className='map' id='map' role='application'>
         <MapWithMarker
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}

@@ -28,10 +28,10 @@ class Header extends React.Component {
   render() {
     return (
       <div>
-        <div className='header' id='header'>
+        <div className='header' id='header' role='navigation'>
           <nav>
             <span>
-              <a href="#" onClick={this.handleOpen}>
+              <a href="#" onClick={this.handleOpen} tabIndex='0'>
                 <svg width="30" height="30">
                   <path d="M0,5 30,5" stroke="#c2c2c2" strokeWidth="5" />
                   <path d="M0,14 30,14" stroke="#c2c2c2" strokeWidth="5" />
@@ -43,7 +43,7 @@ class Header extends React.Component {
         </div>
 
         <div id='side-menu' className='side-nav'>
-          <a onClick={this.handleClose} className='close'>&times;</a>
+          <a href="#" onClick={this.handleClose} className='close'>&times;</a>
           <form>
             <input type="text" name="filter" onChange={this.handleChange} />
             <button>Filter</button>
@@ -52,10 +52,10 @@ class Header extends React.Component {
             {
               this.props.query !== '' ?
                 (this.props.query.map(marker =>
-                  (<div className='content-text' key={marker.id} onClick={this.handleListClick}>{marker.name}</div>)
+                  (<a href="#" className='content-text' key={marker.id} onClick={this.handleListClick}>{marker.name}</a>)
                 )) :
                 this.props.markers.map(marker =>
-                  (<div className='content-text' key={marker.id} onClick={this.handleListClick}>{marker.name}</div>)
+                  (<a href="#" className='content-text' key={marker.id} onClick={this.handleListClick}>{marker.name}</a>)
                 )
             }
           </div>
