@@ -6,6 +6,7 @@ class Header extends React.Component {
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleListClick = this.handleListClick.bind(this);
   }
 
   handleOpen() {
@@ -17,7 +18,11 @@ class Header extends React.Component {
   }
 
   handleChange(e) {
-    this.props.newQuery(e.target.value);
+    this.props.newQuery(e.target.value, false);
+  }
+
+  handleListClick(e) {
+    this.props.newQuery(e.target.innerHTML, true);
   }
 
   render() {
@@ -40,12 +45,18 @@ class Header extends React.Component {
         <div id='side-menu' className='side-nav'>
           <a onClick={this.handleClose} className='close'>&times;</a>
           <form>
-            <input type="text" name="filter" onChange={this.handleChange}/>
+            <input type="text" name="filter" onChange={this.handleChange} />
             <button>Filter</button>
           </form>
           <div className='content'>
             {
-              this.props.markers.map((marker, value) => (<div className='content-text' key={value}>{marker.name}</div>))
+              this.props.query !== '' ?
+                (this.props.query.map(marker =>
+                  (<div className='content-text' key={marker.id} onClick={this.handleListClick}>{marker.name}</div>)
+                )) :
+                this.props.markers.map(marker =>
+                  (<div className='content-text' key={marker.id} onClick={this.handleListClick}>{marker.name}</div>)
+                )
             }
           </div>
         </div>

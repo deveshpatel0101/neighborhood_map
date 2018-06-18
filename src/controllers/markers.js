@@ -11,6 +11,7 @@ export const get = (lat, lng) => {
         markers = data.slice(0, 15);
         markers = markers.map(place => {
             return {
+                id: place.id,
                 name: place.name,
                 address: place.location.address,
                 lat: place.location.lat,

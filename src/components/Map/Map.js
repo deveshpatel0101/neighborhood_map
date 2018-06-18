@@ -15,6 +15,7 @@ class Map extends React.Component {
           markers={this.props.markers}
           lat={this.props.lat}
           lng={this.props.lng}
+          click={this.props.click}
         />
       </div>
     )
