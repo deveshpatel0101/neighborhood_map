@@ -31,33 +31,37 @@ class Header extends React.Component {
         <div className='header' id='header' role='navigation'>
           <nav>
             <span>
-              <a href="#" onClick={this.handleOpen} tabIndex='0'>
-                <svg width="30" height="30">
-                  <path d="M0,5 30,5" stroke="#c2c2c2" strokeWidth="5" />
-                  <path d="M0,14 30,14" stroke="#c2c2c2" strokeWidth="5" />
-                  <path d="M0,23 30,23" stroke="#c2c2c2" strokeWidth="5" />
+              <a href='#' onClick={this.handleOpen} tabIndex='0'>
+                <svg width='30' height='30'>
+                  <path d='M0,5 30,5' stroke='#c2c2c2' strokeWidth='5' />
+                  <path d='M0,14 30,14' stroke='#c2c2c2' strokeWidth='5' />
+                  <path d='M0,23 30,23' stroke='#c2c2c2' strokeWidth='5' />
                 </svg>
               </a>
             </span>
           </nav>
+
         </div>
 
         <div id='side-menu' className='side-nav'>
-          <a href="#" onClick={this.handleClose} className='close'>&times;</a>
+          <a href='#' onClick={this.handleClose} className='close'>&times;</a>
           <form>
-            <input type="text" name="filter" onChange={this.handleChange} />
+            <input type='text' name='filter' onChange={this.handleChange} />
             <button>Filter</button>
           </form>
           <div className='content'>
             {
               this.props.query !== '' ?
                 (this.props.query.map(marker =>
-                  (<a href="#" className='content-text' key={marker.id} onClick={this.handleListClick}>{marker.name}</a>)
+                  (<a href='#' className='content-text' key={marker.id} onClick={this.handleListClick}>{marker.name}</a>)
                 )) :
                 this.props.markers.map(marker =>
-                  (<a href="#" className='content-text' key={marker.id} onClick={this.handleListClick}>{marker.name}</a>)
+                  (<a href='#' className='content-text' key={marker.id} onClick={this.handleListClick}>{marker.name}</a>)
                 )
             }
+            <div className='api-used'>
+              <a href='https://foursquare.com' target='_blank'>Foursquare API used.</a>
+            </div>
           </div>
         </div>
       </div>

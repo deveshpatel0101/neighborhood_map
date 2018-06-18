@@ -1,5 +1,6 @@
 import secrets from '../../src/secrets';
-let markers = [];
+let markers = [],
+    alertCount = 0;
 
 export const get = (lat, lng) => {
     let url = `https://api.foursquare.com/v2/venues/search?client_id=${secrets.clientId}&client_secret=${secrets.clientSecret}&ll=${lat},${lng}&v=20180101`;
@@ -21,9 +22,15 @@ export const get = (lat, lng) => {
                 lng: place.location.lng
             }
         });
+        localStorage.setItem('markers', JSON.stringify(markers));
         return markers;
     }).catch(err => {
         console.log(err);
-        alert('Something went wrong while making request to Foursquare API.');
+        alertCount++;
+        if (alertCount === 1)
+            alert('Seems like you are offline. Please make sure you have internet connection.');
+        markers = localStorage.getItem('markers');
+        markers = JSON.parse(markers);
+        return markers;
     });
 }

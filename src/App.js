@@ -32,7 +32,9 @@ class App extends Component {
 
   componentDidMount() {
     get(this.state.lat, this.state.lng).then(response => {
-      this.setState(() => ({ markers: response }));
+      if (response) {
+        this.setState(() => ({ markers: response }));
+      }
     });
   }
 
