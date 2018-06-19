@@ -60,19 +60,7 @@
   padding: 3px;
   font-style: italic;
   background-color: #dfdfdf;
-}
-
-.side-nav form button {
-  width: 50px;
-  height: 25px;
-  border: none;
-  border-radius: 2px;
-}
-
-.side-nav form button:hover {
-  background-color: grey;
-  transition: 0.3s;
-  cursor: pointer;
+  width: 230px;
 }
 
 .api-used {

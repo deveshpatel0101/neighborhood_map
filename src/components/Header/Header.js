@@ -49,8 +49,7 @@ class Header extends React.Component {
         <div id='side-menu' className='side-nav'>
           <a href='#' onClick={this.handleClose} className='close'>&times;</a>
           <form>
-            <input type='text' name='filter' onChange={this.handleChange} />
-            <button>Filter</button>
+            <input type='text' name='filter' onChange={this.handleChange} placeholder='Search/Filter' />
           </form>
           <div className='content'>
             {

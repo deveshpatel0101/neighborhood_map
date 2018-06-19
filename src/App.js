@@ -21,7 +21,7 @@ class App extends Component {
 
   componentWillMount() {
     let that = this;
-    if (navigator.geolocation) {
+    if (navigator.geolocation) { //for displaying markers nearby your current location.
       navigator.geolocation.getCurrentPosition(function (position) {
         get(position.coords.latitude, position.coords.longitude).then(response => {
           that.setState(() => ({ markers: response, lat: position.coords.latitude, lng: position.coords.longitude }));
@@ -38,7 +38,7 @@ class App extends Component {
     });
   }
 
-  newQuery(query, click) {
+  newQuery(query, click) { //will be called when filter is applied
     let filterSearch = filter(this.state.markers, 'name');
     let results = filterSearch(query);
     if (!click) this.setState(() => ({ query: results, click: false }));
