@@ -19,7 +19,8 @@ export const get = (lat, lng) => {
                 name: place.name,
                 address: place.location.address,
                 lat: place.location.lat,
-                lng: place.location.lng
+                lng: place.location.lng,
+                category: place.categories[0]
             }
         });
         localStorage.setItem('markers', JSON.stringify(markers));

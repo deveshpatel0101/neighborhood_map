@@ -17,7 +17,7 @@ class DisplayMarker extends React.Component {
   }
 
   render() {
-    if(this.props.click) {
+    if (this.props.click) {
       setTimeout(() => {
         this.setState(() => ({ animation: false }));
       }, 1500);
@@ -31,7 +31,21 @@ class DisplayMarker extends React.Component {
       >
         {(this.state.isOpen || this.props.click) &&
           <InfoWindow onCloseClick={this.onToggleOpen}>
-            <div>{this.props.name}</div>
+            <div>
+              {this.props.category.name ?
+                <div><b>Category: </b>{this.props.category.name}</div> :
+                null}
+              {this.props.name ?
+                <div><b>Name: </b>{this.props.name}</div> :
+                null
+              }
+              {this.props.address ?
+                <div>
+                  <b>Address: </b>
+                  {this.props.address}
+                </div> :
+                null}
+            </div>
           </InfoWindow>
         }
       </Marker>

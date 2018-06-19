@@ -7,7 +7,7 @@ class MapWithMarker extends React.Component {
   render() {
     return (
       <GoogleMap
-        defaultZoom={14}
+        defaultZoom={16}
         defaultCenter={{ lat: this.props.lat, lng: this.props.lng }}
         center={{ lat: this.props.lat, lng: this.props.lng }}
       >
@@ -27,6 +27,8 @@ class MapWithMarker extends React.Component {
                 lat={marker.lat}
                 lng={marker.lng}
                 name={marker.name}
+                address={marker.address}
+                category={marker.category}
                 key={marker.id}
                 click={this.props.click === marker.name ? true : false}
               />
