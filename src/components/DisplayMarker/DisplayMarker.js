@@ -7,7 +7,8 @@ class DisplayMarker extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      animation: true
+      animation: false,
+      count: 0
     }
     this.onToggleOpen = this.onToggleOpen.bind(this);
   }
@@ -16,23 +17,27 @@ class DisplayMarker extends React.Component {
     this.setState((prevState) => ({ isOpen: !(prevState.isOpen) }));
   }
 
-  render() {
-    if (this.props.click) {
+  componentDidUpdate() {
+    if (this.props.click && !this.state.animation) {
+      this.setState(() => ({animation: true}));
       setTimeout(() => {
-        this.setState(() => ({ animation: false }));
+        this.setState(() => ({animation: false}))
       }, 1500);
     }
+  }
+
+  render() {
     return (
       <Marker
         position={{ lat: this.props.lat, lng: this.props.lng }}
         onClick={this.onToggleOpen}
-        animation={this.props.click && this.state.animation ? window.google.maps.Animation.BOUNCE : false}
+        animation={this.props.click ? window.google.maps.Animation.BOUNCE : false}
         onAnimationChanged={this.handleAnimation}
       >
-        {(this.state.isOpen || this.props.click) &&
+        {(this.state.isOpen) &&
           <InfoWindow onCloseClick={this.onToggleOpen}>
             <div>
-              {this.props.category.name ?
+              {this.props.category ?
                 <div><b>Category: </b>{this.props.category.name}</div> :
                 null}
               {this.props.name ?

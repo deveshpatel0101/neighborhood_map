@@ -39,10 +39,16 @@ class App extends Component {
   }
 
   newQuery(query, click) { //will be called when filter is applied
-    let filterSearch = filter(this.state.markers, 'name');
-    let results = filterSearch(query);
-    if (!click) this.setState(() => ({ query: results, click: false }));
-    else this.setState(() => ({ click: query }));
+    if (!click) {
+      let filterSearch = filter(this.state.markers, 'name');
+      let results = filterSearch(query);
+      if (!click) this.setState(() => ({ query: results, click: false }));
+    } else {
+      this.setState(() => ({ click: query }));
+      setTimeout(() => {
+        this.setState(() => ({ click: false }));
+      }, 1500);
+    }
   }
 
   render() {

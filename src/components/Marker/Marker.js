@@ -18,6 +18,8 @@ class MapWithMarker extends React.Component {
                 lat={marker.lat}
                 lng={marker.lng}
                 name={marker.name}
+                address={marker.address}
+                category={marker.category}
                 key={marker.id}
                 click={this.props.click === marker.name ? true : false}
               />
