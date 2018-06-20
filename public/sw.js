@@ -1,4 +1,4 @@
-const cacheVersion = 'nhbrhd_map_v1'
+const cacheVersion = 'nhbrhd_map_v2'
 //cache all static files during sw installation.
 self.addEventListener('install', function(event) {
     console.log('Service worker installed');

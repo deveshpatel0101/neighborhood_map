@@ -19,9 +19,9 @@ class DisplayMarker extends React.Component {
 
   componentDidUpdate() {
     if (this.props.click && !this.state.animation) {
-      this.setState(() => ({animation: true}));
+      this.setState(() => ({ animation: true, isOpen: true }));
       setTimeout(() => {
-        this.setState(() => ({animation: false}))
+        this.setState(() => ({ animation: false }))
       }, 1500);
     }
   }
