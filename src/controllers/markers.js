@@ -32,6 +32,10 @@ export const get = (lat, lng) => {
             alert('Seems like you are offline. Please make sure you have internet connection.');
         markers = localStorage.getItem('markers');
         markers = JSON.parse(markers);
-        return markers;
+        if (markers) {
+            return markers;
+        } else {
+            return [];
+        }
     });
 }
