@@ -3,13 +3,25 @@ import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import DisplayMarker from '../DisplayMarker/DisplayMarker';
 
 class MapWithMarker extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lat: this.props.lat,
+      lng: this.props.lng
+    }
+    this.updateCenter = this.updateCenter.bind(this);
+  }
+
+  updateCenter(lat, lng) {
+    this.setState(() => ({ lat: lat, lng: lng }));
+  }
 
   render() {
     return (
       <GoogleMap
         defaultZoom={16}
         defaultCenter={{ lat: this.props.lat, lng: this.props.lng }}
-        center={{ lat: this.props.lat, lng: this.props.lng }}
+        center={{ lat: this.state.lat, lng: this.state.lng }}
       >
         {
           this.props.query !== '' ?
@@ -21,7 +33,9 @@ class MapWithMarker extends React.Component {
                 address={marker.address}
                 category={marker.category}
                 key={marker.id}
-                click={this.props.click === marker.name ? true : false}
+                id={this.props.click === marker.id ? marker.id : false}
+                updateCenter={this.updateCenter}
+                click={this.props.click === marker.id ? true : false}
               />
             ))) :
             this.props.markers.map(marker => (
@@ -32,7 +46,9 @@ class MapWithMarker extends React.Component {
                 address={marker.address}
                 category={marker.category}
                 key={marker.id}
-                click={this.props.click === marker.name ? true : false}
+                id={this.props.click === marker.id ? marker.id : false}
+                updateCenter={this.updateCenter}
+                click={this.props.click === marker.id ? true : false}
               />
             ))}
       </GoogleMap>

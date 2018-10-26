@@ -22,7 +22,7 @@ class Header extends React.Component {
   }
 
   handleListClick(e) {
-    this.props.newQuery(e.target.innerHTML, true);
+    this.props.newQuery(e.target.id, true);
   }
 
   render() {
@@ -31,13 +31,13 @@ class Header extends React.Component {
         <div className='header' id='header' role='navigation'>
           <nav>
             <span>
-              <a href='#' onClick={this.handleOpen} tabIndex='0'>
+              <span onClick={this.handleOpen} tabIndex='0' className='menu-open-icon'>
                 <svg width='30' height='30'>
                   <path d='M0,5 30,5' stroke='#c2c2c2' strokeWidth='5' />
                   <path d='M0,14 30,14' stroke='#c2c2c2' strokeWidth='5' />
                   <path d='M0,23 30,23' stroke='#c2c2c2' strokeWidth='5' />
                 </svg>
-              </a>
+              </span>
             </span>
           </nav>
           <div className='api-used'>
@@ -47,7 +47,7 @@ class Header extends React.Component {
         </div>
 
         <div id='side-menu' className='side-nav'>
-          <a href='#' onClick={this.handleClose} className='close'>&times;</a>
+          <span onClick={this.handleClose} className='close'>&times;</span>
           <form>
             <input type='text' name='filter' onChange={this.handleChange} placeholder='Search/Filter' />
           </form>
@@ -55,10 +55,10 @@ class Header extends React.Component {
             {
               this.props.query !== '' ?
                 (this.props.query.map(marker =>
-                  (<a href='#' className='content-text' key={marker.id} onClick={this.handleListClick}>{marker.name}</a>)
+                  (<span className='content-text' id={marker.id} key={marker.id} onClick={this.handleListClick}>{marker.name}</span>)
                 )) :
                 this.props.markers.map(marker =>
-                  (<a href='#' className='content-text' key={marker.id} onClick={this.handleListClick}>{marker.name}</a>)
+                  (<span className='content-text' id={marker.id} key={marker.id} onClick={this.handleListClick}>{marker.name}</span>)
                 )
             }
           </div>

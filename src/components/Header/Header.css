@@ -17,6 +17,10 @@
   transition: 0.3s;
 }
 
+.menu-open-icon:hover {
+  cursor: pointer;
+}
+
 .side-nav {
   height: 100%;
   width: 0;

@@ -15,11 +15,15 @@ class DisplayMarker extends React.Component {
 
   onToggleOpen() {
     this.setState((prevState) => ({ isOpen: !(prevState.isOpen) }));
+    if (this.state.isOpen) {
+      this.props.updateCenter(this.props.lat, this.props.lng);
+    }
   }
 
   componentDidUpdate() {
     if (this.props.click && !this.state.animation) {
       this.setState(() => ({ animation: true, isOpen: true }));
+      this.props.updateCenter(this.props.lat, this.props.lng);
       setTimeout(() => {
         this.setState(() => ({ animation: false }))
       }, 1500);
