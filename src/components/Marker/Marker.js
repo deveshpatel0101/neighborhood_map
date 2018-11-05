@@ -22,6 +22,7 @@ class MapWithMarker extends React.Component {
         defaultZoom={16}
         defaultCenter={{ lat: this.props.lat, lng: this.props.lng }}
         center={{ lat: this.state.lat, lng: this.state.lng }}
+        options={{gestureHandling: 'greedy'}}
       >
         {
           this.props.query !== '' ?
