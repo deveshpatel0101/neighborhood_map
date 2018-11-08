@@ -7,19 +7,25 @@ class MapWithMarker extends React.Component {
     super(props);
     this.state = {
       lat: this.props.lat,
-      lng: this.props.lng
+      lng: this.props.lng,
+      openedMarker: null
     }
     this.updateCenter = this.updateCenter.bind(this);
+    this.updateOpenedMarker = this.updateOpenedMarker.bind(this);
   }
 
   updateCenter(lat, lng) {
     this.setState(() => ({ lat: lat, lng: lng }));
   }
 
+	updateOpenedMarker(id) {
+		this.setState(() => ({ openedMarker: id }));
+	}
+
   render() {
     return (
       <GoogleMap
-        defaultZoom={16}
+        defaultZoom={14}
         defaultCenter={{ lat: this.props.lat, lng: this.props.lng }}
         center={{ lat: this.state.lat, lng: this.state.lng }}
         options={{gestureHandling: 'greedy'}}
@@ -28,27 +34,21 @@ class MapWithMarker extends React.Component {
           this.props.query !== '' ?
             (this.props.query.map(marker => (
               <DisplayMarker
-                lat={marker.lat}
-                lng={marker.lng}
-                name={marker.name}
-                address={marker.address}
-                category={marker.category}
+                {...marker}
                 key={marker.id}
-                id={this.props.click === marker.id ? marker.id : false}
+                opened={this.state.openedMarker}
                 updateCenter={this.updateCenter}
+                updateOpenedMarker={this.updateOpenedMarker}
                 click={this.props.click === marker.id ? true : false}
               />
             ))) :
             this.props.markers.map(marker => (
               <DisplayMarker
-                lat={marker.lat}
-                lng={marker.lng}
-                name={marker.name}
-                address={marker.address}
-                category={marker.category}
+                {...marker}
                 key={marker.id}
-                id={this.props.click === marker.id ? marker.id : false}
+                opened={this.state.openedMarker}
                 updateCenter={this.updateCenter}
+                updateOpenedMarker={this.updateOpenedMarker}
                 click={this.props.click === marker.id ? true : false}
               />
             ))}

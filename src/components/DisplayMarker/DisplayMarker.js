@@ -14,6 +14,7 @@ class DisplayMarker extends React.Component {
   }
 
   onToggleOpen() {
+    this.props.updateOpenedMarker(this.props.id);
     this.setState((prevState) => ({ isOpen: !(prevState.isOpen) }));
     if (this.state.isOpen) {
       this.props.updateCenter(this.props.lat, this.props.lng);
@@ -22,11 +23,15 @@ class DisplayMarker extends React.Component {
 
   componentDidUpdate() {
     if (this.props.click && !this.state.animation) {
+      this.props.updateOpenedMarker(this.props.id);
       this.setState(() => ({ animation: true, isOpen: true }));
       this.props.updateCenter(this.props.lat, this.props.lng);
       setTimeout(() => {
         this.setState(() => ({ animation: false }))
       }, 1500);
+    }
+    if (this.props.opened !== this.props.id && this.state.isOpen) {
+      this.setState(() => ({ isOpen: false }))
     }
   }
 
@@ -38,7 +43,7 @@ class DisplayMarker extends React.Component {
         animation={this.props.click ? window.google.maps.Animation.BOUNCE : false}
         onAnimationChanged={this.handleAnimation}
       >
-        {(this.state.isOpen) &&
+        {(this.state.isOpen && this.props.opened === this.props.id) ?
           <InfoWindow onCloseClick={this.onToggleOpen}>
             <div>
               {this.props.category ?
@@ -55,7 +60,8 @@ class DisplayMarker extends React.Component {
                 </div> :
                 null}
             </div>
-          </InfoWindow>
+          </InfoWindow> :
+          null
         }
       </Marker>
     )
