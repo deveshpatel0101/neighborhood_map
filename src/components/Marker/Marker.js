@@ -10,22 +10,23 @@ class MapWithMarker extends React.Component {
       lng: this.props.lng,
       openedMarker: null
     }
-    this.updateCenter = this.updateCenter.bind(this);
     this.updateOpenedMarker = this.updateOpenedMarker.bind(this);
-  }
-
-  updateCenter(lat, lng) {
-    this.setState(() => ({ lat: lat, lng: lng }));
   }
 
 	updateOpenedMarker(id) {
 		this.setState(() => ({ openedMarker: id }));
-	}
+  }
+
+  componentDidUpdate() {
+    if(this.props.lat !== this.state.lat && this.props.lng !== this.state.lng) {
+      this.setState(() => ({lat: this.props.lat, lng: this.props.lng}))
+    }
+  }
 
   render() {
     return (
       <GoogleMap
-        defaultZoom={14}
+        defaultZoom={15}
         defaultCenter={{ lat: this.props.lat, lng: this.props.lng }}
         center={{ lat: this.state.lat, lng: this.state.lng }}
         options={{gestureHandling: 'greedy'}}
@@ -37,7 +38,6 @@ class MapWithMarker extends React.Component {
                 {...marker}
                 key={marker.id}
                 opened={this.state.openedMarker}
-                updateCenter={this.updateCenter}
                 updateOpenedMarker={this.updateOpenedMarker}
                 click={this.props.click === marker.id ? true : false}
               />
@@ -47,7 +47,6 @@ class MapWithMarker extends React.Component {
                 {...marker}
                 key={marker.id}
                 opened={this.state.openedMarker}
-                updateCenter={this.updateCenter}
                 updateOpenedMarker={this.updateOpenedMarker}
                 click={this.props.click === marker.id ? true : false}
               />
